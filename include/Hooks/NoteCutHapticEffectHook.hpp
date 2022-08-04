@@ -10,8 +10,6 @@ using namespace Libraries::HM::HMLib::VR;
 namespace RumbleMod::Hooks {
     class NoteCutHapticEffectHook : IHook {
     public:
-        inline static SafePtr<HapticPresetSO> rumblePreset;
-
         void AddHooks() override;
         void RemoveHooks() override;
         explicit NoteCutHapticEffectHook(const std::string& name) : IHook(name) {}
