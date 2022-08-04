@@ -2,7 +2,7 @@
   "configurations": [
     {
       "defines": [
-        "ID=\"RumbleMod\"",
+        "MOD_ID=\"RumbleMod\"",
         "VERSION=\"0.1.0\"",
         "__GNUC__",
         "__aarch64__"
