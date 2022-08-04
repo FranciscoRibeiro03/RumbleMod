@@ -1,15 +1,31 @@
-$stopwatch =  [system.diagnostics.stopwatch]::StartNew()
+Param(
+    [Parameter(Mandatory=$false)]
+    [Switch] $clean,
 
-$NDKPath = Get-Content $PSScriptRoot/ndkpath.txt
+    [Parameter(Mandatory=$false)]
+    [Switch] $help
+)
 
-$buildScript = "$NDKPath/build/ndk-build"
-if (-not ($PSVersionTable.PSEdition -eq "Core")) {
-    $buildScript += ".cmd"
+if ($help -eq $true) {
+    Write-Output "`"Build`" - Copiles your mod into a `".so`" or a `".a`" library"
+    Write-Output "`n-- Arguments --`n"
+
+    Write-Output "-Clean `t`t Deletes the `"build`" folder, so that the entire library is rebuilt"
+
+    exit
 }
 
-& $buildScript NDK_PROJECT_PATH=$PSScriptRoot APP_BUILD_SCRIPT=$PSScriptRoot/Android.mk NDK_APPLICATION_MK=$PSScriptRoot/Application.mk
+# if user specified clean, remove all build files
+if ($clean.IsPresent) {
+    if (Test-Path -Path "build") {
+        remove-item build -R
+    }
+}
 
-$stopwatch.Stop()
-$timeElapsed = [math]::Round($stopwatch.Elapsed.TotalSeconds,3)
-Write-output "SO build completed in $timeElapsed seconds"
-Exit $LASTEXITCODE
+
+if (($clean.IsPresent) -or (-not (Test-Path -Path "build"))) {
+    new-item -Path build -ItemType Directory
+} 
+
+& cmake -G "Ninja" -DCMAKE_BUILD_TYPE="RelWithDebInfo" -B build
+& cmake --build ./build

@@ -6,12 +6,14 @@
     "id": "RumbleMod",
     "version": "2.0.0",
     "url": null,
-    "additionalData": {}
+		"additionalData": {
+			"overrideSoName": "libRumbleMod.so"
+		}
   },
   "dependencies": [
     {
       "id": "beatsaber-hook",
-      "versionRange": "^2.3.0",
+      "versionRange": "^3.10.0",
       "additionalData": {
         "extraFiles": [
           "src/inline-hook"
@@ -20,17 +22,17 @@
     },
     {
       "id": "codegen",
-      "versionRange": "^0.14.0",
+      "versionRange": "^0.25.0",
       "additionalData": {}
     },
     {
       "id": "custom-types",
-      "versionRange": "^0.12.7",
+      "versionRange": "^0.15.18",
       "additionalData": {}
     },
     {
       "id": "questui",
-      "versionRange": "^0.11.1",
+      "versionRange": "^0.16.2",
       "additionalData": {}
     },
     {
