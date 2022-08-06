@@ -35,31 +35,31 @@ DECLARE_CLASS_CODEGEN(RumbleMod::UI::ViewControllers, RumbleModSettingsViewContr
     DECLARE_INSTANCE_FIELD(VerticalLayoutGroup*, layout);
     DECLARE_INSTANCE_FIELD(HorizontalLayoutGroup*, horizontal);
     DECLARE_INSTANCE_FIELD(Button*, button);
-    DECLARE_STATIC_FIELD(Toggle*, toggle);
+    DECLARE_INSTANCE_FIELD(Toggle*, toggle);
     DECLARE_INSTANCE_FIELD(HorizontalLayoutGroup*, horizontalChild);
     DECLARE_INSTANCE_FIELD(TextMeshProUGUI*, text);
     DECLARE_INSTANCE_FIELD(LayoutElement*, layoutElement);
-    DECLARE_STATIC_FIELD(SliderSetting*, strengthSlider);
-    DECLARE_STATIC_FIELD(SliderSetting*, durationSlider);
-    DECLARE_STATIC_FIELD(SliderSetting*, saberSlider);
-    DECLARE_STATIC_FIELD(SliderSetting*, wallSlider);
-    DECLARE_STATIC_FIELD(SliderSetting*, uiSlider);
+    DECLARE_INSTANCE_FIELD(SliderSetting*, strengthSlider);
+    DECLARE_INSTANCE_FIELD(SliderSetting*, durationSlider);
+    DECLARE_INSTANCE_FIELD(SliderSetting*, saberSlider);
+    DECLARE_INSTANCE_FIELD(SliderSetting*, wallSlider);
+    DECLARE_INSTANCE_FIELD(SliderSetting*, uiSlider);
 
     DECLARE_OVERRIDE_METHOD(void, DidActivate, GET_FIND_METHOD(&ViewController::DidActivate), bool firstActivation, bool addedToHeirarchy, bool screenSystemEnabling);
     DECLARE_OVERRIDE_METHOD(void, DidDeactivate, GET_FIND_METHOD(&ViewController::DidDeactivate), bool removedFromHeirarchy, bool screenSystemDisabling);
+
+    DECLARE_INSTANCE_FIELD(HapticFeedbackController*, hapticFeedbackController);
+    DECLARE_INSTANCE_FIELD(HapticPresetSO*, rumblePreset);
+
+    DECLARE_INSTANCE_METHOD(void, OnDefaultClick);
+    DECLARE_INSTANCE_METHOD(void, OnRecommendedClick);
+
+    DECLARE_INSTANCE_METHOD(void, OnRumbleNoteClick);
+    DECLARE_INSTANCE_METHOD(void, OnRumbleSaberClick);
+    DECLARE_INSTANCE_METHOD(void, OnRumbleWallClick);
+    DECLARE_INSTANCE_METHOD(void, OnRumbleUIClick);
+
+    DECLARE_INSTANCE_METHOD(void, RumbleTest, float strength, float duration);
+
     DECLARE_CTOR(ctor);
-    // All the rumble majik :>
-
-    DECLARE_STATIC_FIELD(HapticFeedbackController*, hapticFeedbackController);
-    DECLARE_STATIC_FIELD(HapticPresetSO*, rumblePreset);
-
-    DECLARE_STATIC_METHOD(void, OnDefaultClick);
-    DECLARE_STATIC_METHOD(void, OnRecommendedClick);
-
-    DECLARE_STATIC_METHOD(void, OnRumbleNoteClick);
-    DECLARE_STATIC_METHOD(void, OnRumbleSaberClick);
-    DECLARE_STATIC_METHOD(void, OnRumbleWallClick);
-    DECLARE_STATIC_METHOD(void, OnRumbleUIClick);
-
-    DECLARE_STATIC_METHOD(void, RumbleTest, float strength, float duration);
 )
