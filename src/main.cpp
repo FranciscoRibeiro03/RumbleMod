@@ -1,18 +1,10 @@
 #include "main.hpp"
 #include "Config/ModConfig.hpp"
-
-#include "IHook.hpp"
-using namespace RumbleMod;
+#include "hooking.hpp"
 
 #include "custom-types/shared/register.hpp"
 
 #include "questui/shared/QuestUI.hpp"
-
-#include "Hooks/NoteCutHapticEffectHook.hpp"
-#include "Hooks/ObstacleSaberSparkleEffectManagerHook.hpp"
-#include "Hooks/SaberClashEffectHook.hpp"
-#include "Hooks/VRInputModuleHook.hpp"
-using namespace RumbleMod::Hooks;
 
 #include "UI/ViewControllers/RumbleModSettingsViewController.hpp"
 using namespace RumbleMod::UI::ViewControllers;
@@ -52,18 +44,7 @@ extern "C" void load() {
     QuestUI::Init();
     QuestUI::Register::RegisterModSettingsViewController<RumbleModSettingsViewController*>(modInfo);
 
-    //if (getModConfig().enabled.GetValue()) {
-        new NoteCutHapticEffectHook("NoteCutHapticEffect");
-        new ObstacleSaberSparkleEffectManagerHook("ObstacleSaberSparkleEffectManager");
-        new SaberClashEffectHook("SaberClashEffect");
-        new VRInputModuleHook("VRInputModule");
-
-    //}
-
     getLogger().info("Installing hooks...");
-    if (!IHook::InstallHooks())
-        getLogger().error("Failed to install hooks");
-    else
-        getLogger().info("Finished installing hooks!");
+    Hooks::InstallHooks(getLogger());
     getLogger().info("Installed all hooks!");
 }

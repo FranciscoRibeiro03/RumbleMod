@@ -1,8 +1,6 @@
 #include "main.hpp"
 #include "Config/ModConfig.hpp"
-
-#include "Hooks/NoteCutHapticEffectHook.hpp"
-using namespace RumbleMod::Hooks;
+#include "hooking.hpp"
 
 #include "GlobalNamespace/ObstacleSaberSparkleEffectManager.hpp"
 #include "GlobalNamespace/NoteCutHapticEffect.hpp"
@@ -16,7 +14,7 @@ using namespace UnityEngine::XR;
 #include "Libraries/HM/HMLib/VR/HapticPresetSO.hpp"
 using namespace Libraries::HM::HMLib::VR;
 
-MAKE_HOOK_MATCH(NoteCutHapticEffect_HitNote, &NoteCutHapticEffect::HitNote, void,
+MAKE_AUTO_HOOK_MATCH(NoteCutHapticEffect_HitNote, &NoteCutHapticEffect::HitNote, void,
     NoteCutHapticEffect* self, SaberType saberType, NoteCutHapticEffect::Type type
 ) {
     static float originalStrengthNormal = self->normalPreset->strength;
@@ -31,13 +29,4 @@ MAKE_HOOK_MATCH(NoteCutHapticEffect_HitNote, &NoteCutHapticEffect::HitNote, void
     }
 
     NoteCutHapticEffect_HitNote(self, saberType, type);
-}
-
-void NoteCutHapticEffectHook::AddHooks() {
-    INSTALL_HOOK(getLogger(), NoteCutHapticEffect_HitNote)
-}
-
-void NoteCutHapticEffectHook::RemoveHooks() {
-    // UNINSTALL_HOOK(getLogger(), NoteCutHapticEffect_HitNote);
-    getLogger().info("Uninstalling hooks not supported yet");
 }

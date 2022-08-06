@@ -4,12 +4,6 @@ using namespace RumbleMod::UI::ViewControllers;
 #include "main.hpp"
 #include "Config/ModConfig.hpp"
 
-#include "IHook.hpp"
-using namespace RumbleMod;
-
-#include "Hooks/NoteCutHapticEffectHook.hpp"
-using namespace RumbleMod::Hooks;
-
 #include "questui/shared/BeatSaberUI.hpp"
 using namespace QuestUI::BeatSaberUI;
 
