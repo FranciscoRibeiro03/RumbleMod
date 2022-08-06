@@ -38,5 +38,6 @@ void NoteCutHapticEffectHook::AddHooks() {
 }
 
 void NoteCutHapticEffectHook::RemoveHooks() {
-    UNINSTALL_HOOK(getLogger(), NoteCutHapticEffect_HitNote);
+    // UNINSTALL_HOOK(getLogger(), NoteCutHapticEffect_HitNote);
+    getLogger().info("Uninstalling hooks not supported yet");
 }

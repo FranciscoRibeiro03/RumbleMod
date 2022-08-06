@@ -25,5 +25,6 @@ void ObstacleSaberSparkleEffectManagerHook::AddHooks() {
 }
 
 void ObstacleSaberSparkleEffectManagerHook::RemoveHooks() {
-    UNINSTALL_HOOK(getLogger(), ObstacleSaberSparkleEffectManager_Update);
+    // UNINSTALL_HOOK(getLogger(), ObstacleSaberSparkleEffectManager_Update);
+    getLogger().info("Uninstalling hooks not supported yet");
 }

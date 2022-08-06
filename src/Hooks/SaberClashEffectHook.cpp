@@ -25,5 +25,6 @@ void SaberClashEffectHook::AddHooks() {
 }
 
 void SaberClashEffectHook::RemoveHooks() {
-    UNINSTALL_HOOK(getLogger(), SaberClashEffect_LateUpdate);
+    // UNINSTALL_HOOK(getLogger(), SaberClashEffect_LateUpdate);
+    getLogger().info("Uninstalling hooks not supported yet");
 }

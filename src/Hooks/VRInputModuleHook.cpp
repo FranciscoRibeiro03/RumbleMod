@@ -25,5 +25,6 @@ void VRInputModuleHook::AddHooks() {
 }
 
 void VRInputModuleHook::RemoveHooks() {
-    UNINSTALL_HOOK(getLogger(), VRInputModule_HandlePointerExitAndEnter);
+    // UNINSTALL_HOOK(getLogger(), VRInputModule_HandlePointerExitAndEnter)
+    getLogger().info("Uninstalling hooks not supported yet");
 }
