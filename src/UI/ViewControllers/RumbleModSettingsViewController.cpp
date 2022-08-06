@@ -195,9 +195,9 @@ void RumbleModSettingsViewController::RumbleTest(float strength, float duration)
     getLogger().info("RumbleTest: strength=%f, duration=%f", strength, duration);
 
     if (hapticFeedbackController() == nullptr) {
-        Array<VRInputModule*>* vrInputModules = Resources::FindObjectsOfTypeAll<VRInputModule*>();
+        auto vrInputModules = Resources::FindObjectsOfTypeAll<VRInputModule*>();
         VRInputModule* vrInputModule;
-        if (vrInputModules->get_Length() > 0) vrInputModule = vrInputModules->values[0]; else vrInputModule = nullptr;
+        if (vrInputModules->Length() > 0) vrInputModule = vrInputModules->values[0]; else vrInputModule = nullptr;
         if (vrInputModule != nullptr) {
             hapticFeedbackController() = vrInputModule->hapticFeedbackController;
         }

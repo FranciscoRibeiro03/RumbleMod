@@ -7,6 +7,7 @@ using namespace RumbleMod::Hooks;
 #include "GlobalNamespace/ObstacleSaberSparkleEffectManager.hpp"
 #include "GlobalNamespace/NoteCutHapticEffect.hpp"
 #include "GlobalNamespace/HapticFeedbackController.hpp"
+#include "GlobalNamespace/NoteCutHapticEffect_Type.hpp"
 using namespace GlobalNamespace;
 
 #include "UnityEngine/XR/XRNode.hpp"
@@ -16,21 +17,20 @@ using namespace UnityEngine::XR;
 using namespace Libraries::HM::HMLib::VR;
 
 MAKE_HOOK_MATCH(NoteCutHapticEffect_HitNote, &NoteCutHapticEffect::HitNote, void,
-    NoteCutHapticEffect* self, SaberType saberType
+    NoteCutHapticEffect* self, SaberType saberType, NoteCutHapticEffect::Type type
 ) {
-    static float originalStrength = self->rumblePreset->strength;
-    static float originalDuration = self->rumblePreset->duration;
+    static float originalStrengthNormal = self->normalPreset->strength;
+    static float originalDurationNormal = self->normalPreset->duration;
 
     if (getModConfig().enabled.GetValue()) {
-        self->rumblePreset->strength = getModConfig().strength.GetValue();
-        self->rumblePreset->duration = getModConfig().duration.GetValue();
-        getLogger().info("Note Rumble: strength=%f, duration=%f", getModConfig().strength.GetValue(), getModConfig().duration.GetValue());
+        self->normalPreset->strength = getModConfig().strength.GetValue();
+        self->normalPreset->duration = getModConfig().duration.GetValue();
     } else {
-        self->rumblePreset->strength = originalStrength;
-        self->rumblePreset->duration = originalDuration;
+        self->normalPreset->strength = originalStrengthNormal;
+        self->normalPreset->duration = originalDurationNormal;
     }
 
-    NoteCutHapticEffect_HitNote(self, saberType);
+    NoteCutHapticEffect_HitNote(self, saberType, type);
 }
 
 void NoteCutHapticEffectHook::AddHooks() {
